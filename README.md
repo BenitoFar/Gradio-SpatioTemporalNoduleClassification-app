@@ -1,1 +1,1 @@
-"# Spatio-temporal-nodules-DEMO" 
+DEMO: Spatio-temporal lung nodule maligncy prediction
