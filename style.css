@@ -1,0 +1,19 @@
+.custom-button {
+    font-size: 30px; /* Increase text size */
+    padding: 20px 40px; /* Add padding for larger dimensions */
+    background-color: #a0a0a0; /* Optional: Change background color */
+    color: rgb(3, 0, 0); /* Optional: Text color */
+    border: none; /* Remove default border */
+    border-radius: 8px; /* Optional: Round edges */
+    cursor: pointer; /* Add pointer cursor */
+}
+
+.custom_label {
+    font-size: 25px; /* Increase text size */
+    color: #000000; /* Optional: Change text color */
+}
+
+.summary_text {
+    font-size: 30px; /* Increase text size */
+    color: #000000; /* Optional: Change text color */
+}

@@ -17,11 +17,11 @@ from utils import plot_slice_at_centroid, extract_fmcib_features, string_to_arra
 
 def predict_linear(features):
     #import scaler
-    scaler = joblib.load("scaler_linear_model.pkl")
+    scaler = joblib.load("./preprocessing/scaler_linear_model.pkl")
     features = scaler.transform(features)
     
     #import linear model
-    model = joblib.load("linear_model.pkl")
+    model = joblib.load("./models/linear_model.pkl")
     
     #run model
     probs = model.predict_proba(features)

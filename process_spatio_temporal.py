@@ -14,6 +14,7 @@ import numpy as np
 from tqdm import tqdm
 from matplotlib import pyplot as plt
 from utils import plot_slice_at_centroid, extract_fmcib_features, string_to_array, plot_empy_slice, remove_files_from_folder, to_subscript
+from process_linear import predict_linear
 from torch.utils.data import DataLoader, TensorDataset
 import pickle
 import io
@@ -101,6 +102,8 @@ def predict_spatiotemporal(features):
     
     if probs.ndim == 1:
         probs = np.stack([1 - probs, probs], axis=1)
+        
+    del att_w
     return probs, attention_weights
 
 # Gradio interface function
@@ -158,7 +161,19 @@ def spatiotemporal_classifier(image1_path, image2_path, image3_path, centroid1, 
     labels = ['Benign Nodule', 'Malignant Nodule']
     
     # Make prediction
-    malignancy_prob, attention_weights = predict_spatiotemporal(features)
+    if np.isnan(features).all():
+        return "Please provide at least one valid CT scan"
+    #use predict linear model if only one timepoint is provided
+    if np.sum(np.isnan(features).any(axis=2)) == 2:
+        #set to 1 attention weight for the timestep provided, and 0 for the rest
+        attention_weights = np.zeros((3,))
+        attention_weights[~np.isnan(features).all(axis = 2)[0]]= 1
+        #remove nan rows from features
+        features = features[~np.isnan(features).all(axis =2)]
+        malignancy_prob = predict_linear(features)
+ 
+    else:
+        malignancy_prob, attention_weights = predict_spatiotemporal(features)
     confidences = {labels[i]: float(malignancy_prob.squeeze()[i]) for i in range(len(labels))}
     attention_weights_dict = {f"Most relevant timestep = T{(to_subscript('t-' + str(2-i)) if (2-i) != 0 else 't')}": attention_weights[i] for i in range(3)}
     attention_weights_plot = show_attention_weights_bars(attention_weights)

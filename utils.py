@@ -74,19 +74,19 @@ def plot_slice_at_centroid(image, centroid):
     #normalize slice image
     slice_image = (slice_image - slice_image.min()) / (slice_image.max() - slice_image.min())
     #plot the slice image
-    img_path = f"C:/Users/benit/Desktop/Script/Python/local/streamlit_demo/nlst/tmp/slice_image.png"
-    img_path = f"C:/Users/benit/Desktop/Script/Python/local/streamlit_demo/nlst/tmp/slice_image_{uuid.uuid4()}.png"
+    img_path = f"C:/Users/benit/Desktop/Script/Python/local/demos/nlst/tmp/slice_image.png"
+    img_path = f"C:/Users/benit/Desktop/Script/Python/local/demos/nlst/tmp/slice_image_{uuid.uuid4()}.png"
     plt.imshow(slice_image, cmap='gray')
     #create a rectangle around the centroid
     # plt.plot(centroid[0], centroid[1], markersize=0.5)
-    plt.gca().add_patch(plt.Rectangle((centroid[0]-25, centroid[1]-25), 50, 50, edgecolor='r', facecolor='none'))
+    plt.gca().add_patch(plt.Rectangle((centroid[0]-40, centroid[1]-40), 80, 80, edgecolor='r', facecolor='none'))
     plt.axis('off')
     plt.savefig(img_path)
     plt.close()
     return img_path
 
 def plot_empy_slice(size = 512):
-    img_path = f"C:/Users/benit/Desktop/Script/Python/local/streamlit_demo/nlst/tmp/slice_image_{uuid.uuid4()}.png"
+    img_path = f"C:/Users/benit/Desktop/Script/Python/local/demos/nlst/tmp/slice_image_{uuid.uuid4()}.png"
     plt.imshow(np.zeros((size, size)), cmap='gray')
     plt.axis('off')
     plt.savefig(img_path)
@@ -95,7 +95,7 @@ def plot_empy_slice(size = 512):
 
 def get_centroid_input(image):
     #plot the slice image
-    img_path = f"C:/Users/benit/Desktop/Script/Python/local/streamlit_demo/nlst/tmp/slice_input_image_{uuid.uuid4()}.png"
+    img_path = f"C:/Users/benit/Desktop/Script/Python/local/demos/nlst/tmp/slice_input_image_{uuid.uuid4()}.png"
     plt.imshow(image.squeeze()[25,:,:], cmap='gray')
     plt.axis('off')
     plt.savefig(img_path)
@@ -103,7 +103,7 @@ def get_centroid_input(image):
     return img_path
 
 def get_silency_map_fmcib(model, image):
-    CHECKPOINT_PATH = "./models/fmcib_finetuned.torch"
+    CHECKPOINT_PATH = "./models/feature_extractor_finetuned.torch"
     state_dict = torch.load(CHECKPOINT_PATH, map_location="cpu")
     trained_trunk = state_dict["trunk_state_dict"]
     trained_head = state_dict["head_state_dict"]
@@ -182,7 +182,7 @@ def extract_fmcib_features(image, centroid):
         bias_downsample=True,
         )
     
-    model = LoadModel(trunk=trunk, weights_path='./models/fmcib_model_weights.torch').to(device)
+    model = LoadModel(trunk=trunk, weights_path='./models/feature_extractor_model_weights.torch').to(device)
 
     feature_list = []
     

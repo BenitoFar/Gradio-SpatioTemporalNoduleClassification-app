@@ -133,8 +133,12 @@ class RNNClassifier(nn.Module):
                 x[mask] = -1
         
         #if mask is boolean and mask.shape = [N, T], check if at least there is a False for each column; if not raise error or assign mask = None
-        if (mask.sum(dim=0) == mask.shape[0]).any():
-            mask = None
+        if mask.shape[0] > 1:
+            if (mask.sum(dim=0) == mask.shape[0]).any():
+                mask = None
+        else:
+            if mask.sum() == mask.shape[0]:
+                mask = None
 
         h0 = torch.zeros(self.num_rnn_layers, x.size(0), self.hidden_size) #.to(self.device)
         r_output, _ = self.rnn(x, h0, mask)
