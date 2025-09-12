@@ -49,8 +49,8 @@ The model analyzes **up to three longitudinal 3D CT scans** of the same nodule a
 Clone the repository and install dependencies:
 
 ```bash
-git clone https://github.com/<your-username>/<repo-name>.git
-cd <repo-name>
+git https://github.com/BenitoFar/Gradio-SpatioTemporalNoduleClassification-app.git
+cd Gradio-SpatioTemporalNoduleClassification-app
 pip install -r requirements.txt 
 ```
 ---
