@@ -16,7 +16,7 @@ The model analyzes **up to three longitudinal 3D CT scans** of the same nodule a
 
 ## Demo Video
 
-[Watch the demo video](assets/demo.mp4)
+[▶️ Watch the demo video](assets/demo_compressed.mp4)
 
 ---
 
