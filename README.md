@@ -74,6 +74,10 @@ This will launch a local Gradio interface where you can:
 
 ---
 
+## Demo Video
+
+[Watch the demo video](assets/demo.mp4)
+
 ## Notes
 
 - The app also supports partial longitudinal input if full data is unavailable.
