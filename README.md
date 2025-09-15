@@ -14,6 +14,12 @@ The model analyzes **up to three longitudinal 3D CT scans** of the same nodule a
 
 ---
 
+## Demo Video
+
+[Watch the demo video](assets/demo.mp4)
+
+---
+
 ## Features
 
 - Analyze **up to 3 timepoints** of the same lung nodule.
@@ -73,10 +79,6 @@ This will launch a local Gradio interface where you can:
   - Saliency maps
 
 ---
-
-## Demo Video
-
-[Watch the demo video](assets/demo.mp4)
 
 ## Notes
 
