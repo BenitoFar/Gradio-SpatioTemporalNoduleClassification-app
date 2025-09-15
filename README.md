@@ -1,4 +1,4 @@
-# Lung Nodule Malignancy Prediction Tool - GRADIO app
+# Spatio-Temporal AI for Lung Cancer Screening Nodule Assessment - GRADIO APP
 
 Predict the probability of a lung nodule being **malignant** using a **spatio-temporal deep learning model**.  
 The model analyzes **up to three longitudinal 3D CT scans** of the same nodule and considers its **temporal progression**.
